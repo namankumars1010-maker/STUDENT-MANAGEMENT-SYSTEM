@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">🎓 <span>StudentMS</span></div>
+      <nav>
+        <a class="active" href="#">Dashboard</a>
+        <a href="#students">Students</a>
+      </nav>
+      <div class="sidebar-footer">Student Management<br><small>Academic Dashboard</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>Student Management System</h1>
+          <p>Manage student records and academic performance</p>
+        </div>
+        <button class="primary" id="addBtn">+ Add Student</button>
+      </header>
+
+      <section class="stats">
+        <div class="card"><div class="stat-icon">👥</div><div><span>Total Students</span><strong id="totalStudents">0</strong></div></div>
+        <div class="card"><div class="stat-icon">📊</div><div><span>Average Marks</span><strong id="averageMarks">0</strong></div></div>
+        <div class="card"><div class="stat-icon">✅</div><div><span>Passed</span><strong id="passedStudents">0</strong></div></div>
+        <div class="card"><div class="stat-icon">❌</div><div><span>Failed</span><strong id="failedStudents">0</strong></div></div>
+      </section>
+
+      <section class="panel" id="students">
+        <div class="panel-head">
+          <div>
+            <h2>Student Records</h2>
+            <p>Search, filter, edit or remove students</p>
+          </div>
+          <div class="controls">
+            <input id="searchInput" type="text" placeholder="Search by name or ID...">
+            <select id="branchFilter">
+              <option value="all">All Branches</option>
+              <option value="CSE">CSE</option>
+              <option value="IT">IT</option>
+              <option value="ECE">ECE</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Student ID</th><th>Name</th><th>Branch</th><th>Year</th>
+                <th>Email</th><th>Marks</th><th>Grade</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="studentTable"></tbody>
+          </table>
+        </div>
+        <div id="emptyState" class="empty">No students found. Click <b>+ Add Student</b> to add a record.</div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="studentModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 id="modalTitle">Add Student</h2>
+        <button class="close" id="closeBtn">&times;</button>
+      </div>
+      <form id="studentForm">
+        <input type="hidden" id="editIndex">
+        <div class="form-grid">
+          <label>Student ID<input id="studentId" required placeholder="e.g. STU001"></label>
+          <label>Student Name<input id="studentName" required placeholder="Full name"></label>
+          <label>Branch
+            <select id="branch" required>
+              <option value="">Select branch</option>
+              <option>CSE</option><option>IT</option><option>ECE</option><option>ME</option><option>CE</option>
+            </select>
+          </label>
+          <label>Year
+            <select id="year" required>
+              <option value="">Select year</option>
+              <option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option>
+            </select>
+          </label>
+          <label>Email<input id="email" type="email" required placeholder="student@example.com"></label>
+          <label>Marks (0-100)<input id="marks" type="number" min="0" max="100" required placeholder="85"></label>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="secondary" id="cancelBtn">Cancel</button>
+          <button type="submit" class="primary">Save Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
